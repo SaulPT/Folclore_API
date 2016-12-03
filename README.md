@@ -1,12 +1,11 @@
 Yii 2 Advanced Project Template API
 ===========================================
 
-Projeto com template advanced para depois ser integrado no portal
+Projeto com template advanced para depois ser integrado no portal<br>
 beta test only :)
 
 
 - correr "composer update"
-- correr "php init"
 - definir DB em "common/config/main.php"
 
 
