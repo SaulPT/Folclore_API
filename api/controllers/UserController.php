@@ -11,18 +11,22 @@ class UserController extends \yii\rest\ActiveController
 
     public $modelClass = 'api\models\User';
 
+
     public function behaviors()
     {
         //PERMITE APENAS O METODO GET PARA O LINK "user/login"
-        return [
-            'verbs' => [
-                'class' => \yii\filters\VerbFilter::className(),
-                'actions' => [
-                    'login' => ['get']
+        $behaviors = parent::behaviors();
+
+        $behaviors['verbs'] = [
+            'class' => \yii\filters\VerbFilter::className(),
+            'actions' => [
+                'login' => ['get']
                 ],
-            ],
         ];
+
+        return $behaviors;
     }
+
 
     public function actions()
     {
@@ -30,12 +34,12 @@ class UserController extends \yii\rest\ActiveController
         return null;
     }
 
+
     public function actionLogin()
     {
-
-        $username = Yii::$app->request->getHeaders()->get('username');
-        $password = Yii::$app->request->getHeaders()->get('password');
-        $dispositivo = Yii::$app->request->getHeaders()->get('dispositivo');
+        $username = Yii::$app->request->get('username');
+        $password = Yii::$app->request->get('password');
+        $dispositivo = Yii::$app->request->get('dispositivo');
 
         $utilizador = User::findOne(['username' => $username]);
 

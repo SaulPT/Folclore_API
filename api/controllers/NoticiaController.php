@@ -3,7 +3,6 @@
 namespace api\controllers;
 
 use api\models\Noticia;
-use api\models\UserToken;
 
 class NoticiaController extends \yii\rest\ActiveController
 {
@@ -18,13 +17,7 @@ class NoticiaController extends \yii\rest\ActiveController
 
     public function actionIndex()
     {
-        $token = \Yii::$app->request->getHeaders()->get('token');
-
-        if (!empty(UserToken::findOne(['token' => $token]))) {
-            return Noticia::find()->all();
-        } else {
-            throw new \Exception('Erro de autenticação');
-        }
+        return Noticia::find()->where(['ativo' => 1])->all();
     }
 
 }
