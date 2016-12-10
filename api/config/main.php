@@ -22,6 +22,7 @@ return [
         ],
 
 
+
         'request' => [
             'parsers' => [
                 'application/json' => 'yii\web\JsonParser',
@@ -33,7 +34,7 @@ return [
             'rules' => [
                 [
                     'class' => 'yii\rest\UrlRule',
-                    'controller' => ['noticia', 'user',]
+                    'controller' => ['noticia', 'user', 'grupo']
                 ],
             ],
         ],

@@ -37,9 +37,9 @@ class UserController extends \yii\rest\ActiveController
 
     public function actionLogin()
     {
-        $username = Yii::$app->request->get('username');
-        $password = Yii::$app->request->get('password');
-        $dispositivo = Yii::$app->request->get('dispositivo');
+        $username = Yii::$app->request->getHeaders()->get('username');
+        $password = Yii::$app->request->getHeaders()->get('password');
+        $dispositivo = Yii::$app->request->getHeaders()->get('dispositivo');
 
         $utilizador = User::findOne(['username' => $username]);
 
@@ -66,7 +66,7 @@ class UserController extends \yii\rest\ActiveController
                 $resultado['token'] = $token_utilizador->getAttribute('token');
             }
 
-            return json_encode($resultado);
+            return $resultado;
 
         } else {
             throw new \Exception('Erro de autenticação');
