@@ -20,7 +20,8 @@ class UserController extends \yii\rest\ActiveController
         $behaviors['verbs'] = [
             'class' => \yii\filters\VerbFilter::className(),
             'actions' => [
-                'login' => ['get']
+                'login' => ['get'],
+                'grupos' => ['get'],
                 ],
         ];
 
@@ -73,5 +74,12 @@ class UserController extends \yii\rest\ActiveController
         }
     }
 
+
+    public function actionGrupos()
+    {
+        $token = Yii::$app->request->getHeaders()->get('token');
+        $user_token = UserToken::findOne(['token' => $token]);
+        return $user_token->user->grupos;
+    }
 
 }

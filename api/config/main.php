@@ -34,7 +34,7 @@ return [
             'rules' => [
                 [
                     'class' => 'yii\rest\UrlRule',
-                    'controller' => ['noticia', 'user', 'grupo']
+                    'controller' => ['noticia', 'user', 'grupo', 'concelho', 'distrito']
                 ],
             ],
         ],
