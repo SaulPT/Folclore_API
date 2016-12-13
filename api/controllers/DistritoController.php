@@ -18,9 +18,6 @@ class DistritoController extends \yii\rest\ActiveController
 
     public function actionIndex()
     {
-        //FAZ SENTIDO REQUERER TOKEN APENAS PARA OBTER A LISTA DOS NOMES???
-        //ACHO QUE NAO :)
-
         $nomes = array();
         foreach (Distrito::find()->all() as $distrito) {
             $nomes[$distrito['id'] - 1] = $distrito['nome'];

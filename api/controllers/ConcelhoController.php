@@ -18,14 +18,7 @@ class ConcelhoController extends \yii\rest\ActiveController
 
     public function actionIndex()
     {
-        //FAZ SENTIDO REQUERER TOKEN APENAS PARA OBTER A LISTA DOS NOMES???
-        //ACHO QUE NAO :)
-
-        $nomes = array();
-        foreach (Concelho::find()->all() as $concelho) {
-            $nomes[$concelho['id'] - 1] = $concelho['nome'];
-        }
-
-        return $nomes;
+        //NESSECÁRIO REESCREVER PORQUE O INDEX POR DEFEITO SÓ DEVOLVE 20 RESULTADOS DE CADA VEZ :(
+        return Concelho::find()->all();
     }
 }

@@ -9,12 +9,14 @@ namespace api\models;
  * @property string $nome
  * @property integer $concelho_id
  * @property string $data_criacao
+ * @property string $abreviatura
+ * @property string $logo
  *
  * @property Concelho $concelho
  * @property GrupoAdmin[] $grupoAdmins
  * @property User[] $users
  * @property GrupoContacto $grupoContacto
- * @property GrupoCorpogerente[] $grupoCorpogerentes
+ * @property GrupoCorpogerente $grupoCorpogerente
  * @property GrupoDanca[] $grupoDancas
  * @property GrupoEvento[] $grupoEventos
  * @property Evento[] $eventos
@@ -46,6 +48,8 @@ class Grupo extends \yii\db\ActiveRecord
             [['concelho_id'], 'integer'],
             [['data_criacao'], 'safe'],
             [['nome'], 'string', 'max' => 75],
+            [['abreviatura'], 'string', 'max' => 20],
+            [['logo'], 'string', 'max' => 45],
             [['concelho_id'], 'exist', 'skipOnError' => true, 'targetClass' => Concelho::className(), 'targetAttribute' => ['concelho_id' => 'id']],
         ];
     }
@@ -60,6 +64,8 @@ class Grupo extends \yii\db\ActiveRecord
             'nome' => 'Nome',
             'concelho_id' => 'Concelho ID',
             'data_criacao' => 'Data Criacao',
+            'abreviatura' => 'Abreviatura',
+            'logo' => 'Logo',
         ];
     }
 
@@ -98,9 +104,9 @@ class Grupo extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getGrupoCorpogerentes()
+    public function getGrupoCorpogerente()
     {
-        return $this->hasMany(GrupoCorpogerente::className(), ['grupo_id' => 'id']);
+        return $this->hasOne(GrupoCorpogerente::className(), ['grupo_id' => 'id']);
     }
 
     /**

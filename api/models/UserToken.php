@@ -31,7 +31,8 @@ class UserToken extends \yii\db\ActiveRecord
             [['user_id', 'token', 'dispositivo'], 'required'],
             [['user_id'], 'integer'],
             [['data_criacao'], 'safe'],
-            [['token', 'dispositivo'], 'string', 'max' => 100],
+            [['token'], 'string', 'max' => 200],
+            [['dispositivo'], 'string', 'max' => 45],
             [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],
         ];
     }

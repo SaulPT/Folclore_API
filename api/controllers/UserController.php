@@ -38,9 +38,9 @@ class UserController extends \yii\rest\ActiveController
 
     public function actionLogin()
     {
-        $username = Yii::$app->request->getHeaders()->get('username');
-        $password = Yii::$app->request->getHeaders()->get('password');
-        $dispositivo = Yii::$app->request->getHeaders()->get('dispositivo');
+        $username = Yii::$app->request->headers->get('username');
+        $password = Yii::$app->request->headers->get('password');
+        $dispositivo = Yii::$app->request->headers->get('dispositivo');
 
         $utilizador = User::findOne(['username' => $username]);
 
@@ -50,7 +50,7 @@ class UserController extends \yii\rest\ActiveController
 
             $token_utilizador = $utilizador->getUserTokens()->where(['dispositivo' => $dispositivo])->one();
 
-
+            $resultado = array();
             $resultado['username'] = $utilizador->username;
 
             if ($token_utilizador == null) {
@@ -77,9 +77,15 @@ class UserController extends \yii\rest\ActiveController
 
     public function actionGrupos()
     {
-        $token = Yii::$app->request->getHeaders()->get('token');
+        $token = Yii::$app->request->headers->get('token');
         $user_token = UserToken::findOne(['token' => $token]);
-        return $user_token->user->grupos;
+
+        if ($user_token != null) {
+            return $user_token->user->grupos;
+        } else {
+            throw new \Exception('Erro de autenticação');
+        }
+
     }
 
 }
