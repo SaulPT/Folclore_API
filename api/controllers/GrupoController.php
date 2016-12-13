@@ -13,7 +13,8 @@ class GrupoController extends \yii\rest\ActiveController
 
     public function actions()
     {
-        /////////////////////////sadsadsa
+        dsfdsf
+        sdfsdfds
         //DESABILITAR TODAS AS FUNÇÕES CRUD EXCEPTO O VIEW (GET)
         $actions = parent::actions();
         unset($actions['index'], $actions['create'], $actions['delete'], $actions['update'], $actions['options']);
