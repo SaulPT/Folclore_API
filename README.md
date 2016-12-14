@@ -1,6 +1,6 @@
-********************************************************
-* Descontinuado (integrado noutro repositorio privado) *
-********************************************************
+******************************************************
+*Descontinuado (integrado noutro repositorio privado)*
+******************************************************
 
 
 Yii 2 Advanced Project Template API
